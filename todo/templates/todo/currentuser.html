@@ -1,0 +1,38 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        {% if reminders %}
+             <h1>{{ reminders.count }} Current Reminder{{ reminders.count|pluralize }}</h1>
+        {% else %}
+                       <h1>Current Reminders</h1>
+        {% endif %}
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+    {% if reminders %}
+        <div class="list-group">
+            {% for reminder in reminders %}
+                <a href="{% url 'view_reminder' reminder.id %}" class="list-group-item list-group-item-action{% if reminder.important %} list-group-item-danger{% endif %}"><b>{{ reminder.title }}</b>{% if reminder.memo %} - {{ reminder.memo|truncatechars:30 }}{% endif %}</a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center">
+            <h2>Well done, You don't have any reminders.</h2>
+        <br>
+        <a role="button" class="btn btn-primary" href="{% url 'createtodo' %}">New Reminder</a>
+        </div>
+    {% endif %}
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

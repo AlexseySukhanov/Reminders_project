@@ -1,0 +1,27 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        <h1>Completed Reminders</h1>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        <div class="list-group">
+            {% for reminder in reminders %}
+                <a href="{% url 'view_reminder' reminder.id %}" class="list-group-item list-group-item-action{% if reminder.important %} list-group-item-danger{% endif %}"><b>{{ reminder.title }}</b> - Completed {{ reminder.datecompleted|date:'M j Y H:i' }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
